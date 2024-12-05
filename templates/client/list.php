@@ -29,6 +29,7 @@ if (isset($_GET['search'])) {
             FROM client c 
             LEFT JOIN region r ON c.ID_region = r.ID_region";
     
+
     $stmt = $conn->query($sql);
     $clients = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -38,22 +39,121 @@ if (isset($_GET['search'])) {
 <html>
 <head>
     <title>Liste des Clients</title>
-    <link rel="stylesheet" href="../../public/styles/index.css">
 </head>
-<body class="df-c">
-    <div class="df">
+<style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e9fffa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 80%;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #47506d;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 16px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        form {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .actions a {
+            margin: 0 5px;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 14px;
+        }
+
+        .actions a:hover {
+            text-decoration: underline;
+        }
+    </style>
+<div class="container">
+    <body>
         <h1>Liste des Clients</h1>
         <a href="add.php">Add a client</a>
-    </div>
     
     <!-- Search Form -->
-    <form method="GET" class="df" action="">
+    <form method="GET" action="">
         <input type="text" name="search" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>" placeholder="Search by name">
         <button type="submit">Search</button>
-        <a href="list.php">Clear</a> <!-- Clear search -->
+        <button style="color: white; background-color: red" href="list.php">Clear</button> <!-- Clear search -->
     </form>
 
-    <table border="1">
+    <table >
         <thead>
             <tr>
                 <th>ID</th>
@@ -74,8 +174,8 @@ if (isset($_GET['search'])) {
                         <td><?= $client['age'] ?></td>
                         <td><?= $client['region'] ?></td>
                         <td>
-                            <a href="edit.php?action=editClient&id=<?= $client['ID_client'] ?>">Modifier</a>
-                            <a href="delete.php?action=deleteClient&id=<?= $client['ID_client'] ?>">Supprimer</a>
+                            <a style="color: green; text-decoration: underline;"  href="edit.php?action=editClient&id=<?= $client['ID_client'] ?>">Modifier</a>
+                            <a style="color: red; text-decoration: underline;" href="delete.php?action=deleteClient&id=<?= $client['ID_client'] ?>">Supprimer</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -86,5 +186,7 @@ if (isset($_GET['search'])) {
             <?php endif; ?>
         </tbody>
     </table>
+    <a style="color:#505050; text-decoration: underline;" href="../../home.php">Back to Home</a>
+            </div>
 </body>
 </html>

@@ -32,19 +32,116 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
     <title>Edit Client</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e9fffa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #47506d;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #333;
+            text-align: left;
+            width: 100%;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            margin-top: 20px;
+            display: inline-block;
+            font-size: 16px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Edit Client</h1>
+<div class="container">
+
+    <h2>Edit Client</h2>
     <?php if ($client): ?>
         <form method="POST">
             <input type="hidden" name="id" value="<?= $client['ID_client'] ?>">
-            <label>Nom:</label>
+        <div class="form-group">
+            <label>Nom</label>
             <input type="text" name="nom" value="<?= $client['nom'] ?>"><br>
-            <label>Prénom:</label>
+        </div>
+        <div class="form-group">
+            <label>Prénom</label>
             <input type="text" name="prenom" value="<?= $client['prenom'] ?>"><br>
-            <label>Age:</label>
+        </div>
+        <div class="form-group">
+            <label>Age</label>
             <input type="number" name="age" value="<?= $client['age'] ?>"><br>
-            <label>Région:</label>
+        </div>  
+
+        <div class="form-group">
+            <label>Région</label>
             <select name="ID_region">
                 <?php
                 $regions = $conn->query("SELECT ID_region, libelle FROM region");
@@ -54,11 +151,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 ?>
             </select><br>
+        </div>
             <button type="submit">Update</button>
         </form>
     <?php else: ?>
         <p>Client not found.</p>
     <?php endif; ?>
-    <a href="list.php">Back to List</a>
+    <a style="text-decoration: underline;" href="list.php">Back to List</a>
+    </div>
 </body>
 </html>

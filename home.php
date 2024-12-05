@@ -62,8 +62,8 @@
         <p>Veuillez selectionner une option</p>
         
         <div class="nav">
-            <a href="./client/list.php">Gerer les Clients</a>
-            <a href="./region/list.php">Liste des Regions</a>
+            <a href="./templates/client/list.php">Gerer les Clients</a>
+            <a href="./templates/region/list.php">Liste des Regions</a>
         </div>
     </div>
 </body>
