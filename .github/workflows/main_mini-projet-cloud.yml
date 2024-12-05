@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy PHP app to Azure Web App - projetcloud
+name: Build and deploy PHP app to Azure Web App - mini-projet-cloud
 
 on:
   push:
@@ -61,15 +61,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_2DF3B83227214DD990D77E3DACF5AFB0 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3EAC614618DD46FFAD23C279D889CD47 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7CC97B584F9E48B3BFAF1006C75F4D6B }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_AC251265C564452995B3B08123881AB7 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_EECF40B297784B9C8CE6F75E156D1C33 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_B4F6710566F84CFBA3589A5CB60D1E20 }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
-          app-name: 'projetcloud'
+          app-name: 'mini-projet-cloud'
           slot-name: 'Production'
           package: .
           
